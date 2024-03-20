@@ -63,3 +63,52 @@ module.exports.getAccessToken = async (event) => {
 			};
 		});
 };
+
+module.exports.getCalendarEvents = async (event) => {
+	// Decode the access token extracted from the URL path parameters
+	const access_token = decodeURIComponent(`${event.pathParameters.access_token}`);
+
+	// Set the access token as credentials in oAuth2Client
+	oAuth2Client.setCredentials({ access_token });
+
+	try {
+		const response = await new Promise((resolve, reject) => {
+			calendar.events.list(
+				{
+					calendarId: CALENDAR_ID,
+					auth: oAuth2Client,
+					timeMin: new Date().toISOString(),
+					singleEvents: true,
+					orderBy: 'startTime',
+				},
+				(error, response) => {
+					if (error) {
+						reject(error);
+					} else {
+						resolve(response);
+					}
+				}
+			);
+		});
+
+		// Format and return the response with calendar events and CORS headers
+		return {
+			statusCode: 200,
+			headers: {
+				'Access-Control-Allow-Origin': '*',
+				'Access-Control-Allow-Credentials': true,
+			},
+			body: JSON.stringify({ events: response.data.items }),
+		};
+	} catch (error) {
+		// Handle error and include CORS headers
+		return {
+			statusCode: 500,
+			headers: {
+				'Access-Control-Allow-Origin': '*',
+				'Access-Control-Allow-Credentials': true,
+			},
+			body: JSON.stringify(error),
+		};
+	}
+};
