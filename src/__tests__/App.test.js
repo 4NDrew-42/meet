@@ -40,4 +40,20 @@ describe('<App /> integration', () => {
 
 		expect(allRenderedEventItems.length).toBe(berlinEvents.length);
 	});
+
+	test('renders a list of events matching the number of events selected by the user', async () => {
+		const user = userEvent.setup();
+		render(<App />);
+
+		// Directly use screen to interact with your components
+		const NumberOfEventsInput = screen.getByRole('spinbutton', { name: /Number of Events/i });
+		await user.clear(NumberOfEventsInput);
+		await user.type(NumberOfEventsInput, '1');
+
+		// Assuming your event items have role 'listitem'
+		const allRenderedEventItems = screen.queryAllByRole('listitem');
+
+		// Expect only one event item to be rendered
+		expect(allRenderedEventItems.length).toBe(1);
+	});
 });
