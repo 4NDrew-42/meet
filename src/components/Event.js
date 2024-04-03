@@ -1,6 +1,5 @@
 import React, { useState } from 'react';
 
-// Placeholder for the formatTime function. Consider moving to a separate utilities file if used across multiple components.
 const formatTime = (dateTimeStr) => {
 	const options = {
 		weekday: 'short', // "Wed"
@@ -25,7 +24,6 @@ const Event = ({ event }) => {
 		<div className="Event">
 			<div className="Event__Overview">
 				<h1 className="Event__Overview--Name">{event.summary}</h1>
-				{/* Apply the formatTime function to the event.start.dateTime */}
 				<p className="Event__Overview--Time">{formatTime(event.start.dateTime)}</p>
 				<p className="Event__Overview--Location">{event.location}</p>
 			</div>

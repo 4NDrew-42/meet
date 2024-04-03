@@ -38,11 +38,7 @@ describe('<Event /> component', () => {
 	});
 	test('renders event start time in the correct format', () => {
 		render(<Event event={mockEvents[0]} />);
-
-		// Format the mock event's start.dateTime
 		const formattedDateTime = formatTime(mockEvents[0].start.dateTime);
-
-		// Use getAllByText to retrieve all instances and assert on the first one
 		const dateTimeElements = screen.getAllByText(formattedDateTime);
 		expect(dateTimeElements[0]).toBeInTheDocument();
 	});
