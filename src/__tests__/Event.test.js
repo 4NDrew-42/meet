@@ -4,6 +4,19 @@ import '@testing-library/jest-dom';
 import Event from '../components/Event';
 import mockEvents from '../mock-data';
 
+const formatTime = (dateTimeStr) => {
+	const options = {
+		weekday: 'short', // "Wed"
+		month: 'long', // "April"
+		day: 'numeric', // "17"
+		hour: 'numeric', // "2"
+		minute: '2-digit', // "00"
+		hour12: true, // "PM" or "AM"
+	};
+	const date = new Date(dateTimeStr);
+	return new Intl.DateTimeFormat('en-US', options).format(date);
+};
+
 describe('<Event /> component', () => {
 	let EventComponent;
 	const event = mockEvents[0]; // Correctly reference the first event from your mock data
@@ -23,9 +36,17 @@ describe('<Event /> component', () => {
 	test('renders event location', () => {
 		expect(screen.getByText(event.location)).toBeInTheDocument();
 	});
-	test('renders event start time', () => {
-		expect(screen.getByText(event.start.dateTime)).toBeInTheDocument();
+	test('renders event start time in the correct format', () => {
+		render(<Event event={mockEvents[0]} />);
+
+		// Format the mock event's start.dateTime
+		const formattedDateTime = formatTime(mockEvents[0].start.dateTime);
+
+		// Use getAllByText to retrieve all instances and assert on the first one
+		const dateTimeElements = screen.getAllByText(formattedDateTime);
+		expect(dateTimeElements[0]).toBeInTheDocument();
 	});
+
 	test('renders event details button with the title "Show Details"', () => {
 		expect(screen.getByText('Show details')).toBeInTheDocument();
 	});
