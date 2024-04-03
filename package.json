@@ -2,14 +2,16 @@
 	"name": "meet",
 	"version": "0.1.0",
 	"private": true,
-	"homepage": "https://4NDrew-42.github.io/CF_4_Meet_App",
+	"homepage": "https://4NDrew-42.github.io/meet",
 	"dependencies": {
 		"@testing-library/jest-dom": "^5.17.0",
 		"@testing-library/react": "^13.4.0",
 		"@testing-library/user-event": "^14.5.2",
+		"path-browserify": "^1.0.1",
 		"react": "^18.2.0",
 		"react-dom": "^18.2.0",
 		"react-scripts": "^5.0.1",
+		"url": "^0.11.3",
 		"web-vitals": "^2.1.4",
 		"workbox-background-sync": "^6.6.0",
 		"workbox-broadcast-update": "^6.6.0",
@@ -51,7 +53,7 @@
 		]
 	},
 	"devDependencies": {
-		"gh-pages": "^6.1.1",
-		"@babel/plugin-proposal-private-property-in-object": "^7.16.7"
+		"@babel/plugin-proposal-private-property-in-object": "^7.16.7",
+		"gh-pages": "^6.1.1"
 	}
 }
