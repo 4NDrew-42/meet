@@ -1401,4 +1401,9 @@ const mockData = [
 	},
 ];
 
+export const getEvents = async (city) => {
+	if (!city) return mockData; // Return all events if no city is specified
+	return mockData.filter((event) => event.location.includes(city));
+};
+
 export default mockData;

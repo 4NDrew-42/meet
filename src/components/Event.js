@@ -21,7 +21,7 @@ const Event = ({ event }) => {
 	};
 
 	return (
-		<div className="Event">
+		<div className="Event" data-testid="event">
 			<div className="Event__Overview">
 				<h1 className="Event__Overview--Name">{event.summary}</h1>
 				<p className="Event__Overview--Time">{formatTime(event.start.dateTime)}</p>
