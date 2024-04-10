@@ -2,6 +2,7 @@ import { render, screen, within } from '@testing-library/react';
 import userEvent from '@testing-library/user-event';
 import { getEvents } from '../api';
 import App from '../App';
+import { mockData } from '../mock-data';
 
 describe('<App /> component', () => {
 	let AppDOM;
