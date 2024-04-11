@@ -16,6 +16,7 @@ defineFeature(feature, (test) => {
 			const user = userEvent.setup();
 			await user.clear(screen.getByRole('spinbutton', { name: /number of events/i }));
 			await user.type(screen.getByRole('spinbutton', { name: /number of events/i }), '10');
+			await user.tab();
 		});
 
 		then('that number of events should be shown', async () => {

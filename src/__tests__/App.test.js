@@ -50,6 +50,7 @@ describe('<App /> integration', () => {
 		const NumberOfEventsInput = screen.getByRole('spinbutton', { name: /Number of Events/i });
 		await user.clear(NumberOfEventsInput);
 		await user.type(NumberOfEventsInput, '1');
+		await user.tab();
 
 		// Assuming your event items have role 'listitem'
 		const allRenderedEventItems = screen.queryAllByRole('listitem');
