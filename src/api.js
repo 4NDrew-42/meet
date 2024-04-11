@@ -1,5 +1,7 @@
 //import { response } from 'express';
 import mockData from './mock-data';
+import 'nprogress/nprogress.css';
+import NProgress from 'nprogress';
 
 /**
  *
