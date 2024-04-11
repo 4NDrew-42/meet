@@ -2,6 +2,7 @@ import { render, screen, within } from '@testing-library/react';
 import userEvent from '@testing-library/user-event';
 import { getEvents } from '../api';
 import App from '../App';
+import { mockData } from '../mock-data';
 
 describe('<App /> component', () => {
 	let AppDOM;
@@ -49,6 +50,7 @@ describe('<App /> integration', () => {
 		const NumberOfEventsInput = screen.getByRole('spinbutton', { name: /Number of Events/i });
 		await user.clear(NumberOfEventsInput);
 		await user.type(NumberOfEventsInput, '1');
+		await user.tab();
 
 		// Assuming your event items have role 'listitem'
 		const allRenderedEventItems = screen.queryAllByRole('listitem');
