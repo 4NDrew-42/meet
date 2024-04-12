@@ -1,4 +1,4 @@
-import React, { useState, useEffect } from 'react';
+import React, { useState, useEffect, useCallback } from 'react';
 import CitySearch from './components/CitySearch';
 import EventList from './components/EventList';
 import NumberOfEvents from './components/NumberOfEvents';
@@ -16,6 +16,13 @@ const App = () => {
 	const [errorAlert, setErrorAlert] = useState('');
 	const [warningAlert, setWarningAlert] = useState('');
 
+	const fetchData = useCallback(async () => {
+		const allEvents = await getEvents();
+		const filteredEvents = currentCity === 'See all cities' ? allEvents : allEvents.filter((event) => event.location === currentCity);
+		setEvents(filteredEvents.slice(0, currentNOE));
+		setAllLocations(extractLocations(allEvents));
+	}, [currentCity, currentNOE]);
+
 	useEffect(() => {
 		if (!navigator.onLine) {
 			setWarningAlert('You are offline. Events may be outdated.');
@@ -23,14 +30,7 @@ const App = () => {
 			setWarningAlert('');
 		}
 		fetchData();
-	}, [currentCity, currentNOE]);
-
-	const fetchData = async () => {
-		const allEvents = await getEvents();
-		const filteredEvents = currentCity === 'See all cities' ? allEvents : allEvents.filter((event) => event.location === currentCity);
-		setEvents(filteredEvents.slice(0, currentNOE));
-		setAllLocations(extractLocations(allEvents));
-	};
+	}, [fetchData]);
 
 	return (
 		<div className="App">
