@@ -2,6 +2,8 @@ import React, { useState, useEffect, useCallback } from 'react';
 import CitySearch from './components/CitySearch';
 import EventList from './components/EventList';
 import NumberOfEvents from './components/NumberOfEvents';
+import CityEventsChart from './components/CityEventsChart';
+import EventGenresChart from './components/EventGenresChart';
 import { extractLocations, getEvents } from './api';
 import { InfoAlert, ErrorAlert, WarningAlert } from './components/Alert';
 
@@ -46,6 +48,12 @@ const App = () => {
 			</p>
 			<CitySearch allLocations={allLocations} setCurrentCity={setCurrentCity} setInfoAlert={setInfoAlert} />
 			<NumberOfEvents onChange={setCurrentNOE} setErrorAlert={setErrorAlert} />
+
+			<div className="chart-container">
+				<EventGenresChart events={events} />
+				<CityEventsChart allLocations={allLocations} events={events} />
+			</div>
+
 			<EventList events={events} />
 		</div>
 	);

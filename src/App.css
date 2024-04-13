@@ -23,57 +23,34 @@
 	padding-left: 2rem;
 }
 
+.chart-container {
+	display: grid;
+	grid-template-columns: 1fr; /* Single column for mobile */
+}
+
+.pieChartLabel {
+	font-weight: bold;
+}
+
+/* Smaller screens */
+@media (max-width: 768px) {
+	.chart-container {
+		grid-template-columns: 1fr; /* Ensures single column layout on small devices */
+	}
+}
+
+/* Larger screens */
 @media (min-width: 768px) {
 	.header-area {
 		flex-direction: row;
 		justify-content: space-between;
 		align-items: center;
 	}
-}
 
-.Event {
-	margin: 1rem;
-	padding: 1rem;
-	background-color: #c4c7cf;
-	border-radius: 8px;
-	box-shadow: 0 2px 4px rgba(0, 0, 0, 0.1);
-}
+	.chart-container {
+		grid-template-columns: 1fr 1fr; /* Two columns for larger screens */
+	}
 
-.Event__Overview {
-	margin-bottom: 1rem;
-}
-
-.Event__Overview--Name,
-.Event__Overview--Time,
-.Event__Overview--Location {
-	margin: 0.5rem 0;
-}
-
-.Event__Details {
-	padding-top: 1rem;
-	border-top: 1px solid #ddd;
-}
-
-.Event__Details--Link {
-	color: #007bff;
-	text-decoration: none;
-}
-
-.Event__Overview--Button {
-	background-color: #007bff;
-	color: white;
-	border: none;
-	padding: 0.5rem 1rem;
-	border-radius: 4px;
-	cursor: pointer;
-}
-
-.Event__Overview--Button:hover {
-	background-color: #0056b3;
-}
-
-/* Larger screens */
-@media (min-width: 768px) {
 	.Event {
 		margin: 2rem auto;
 		max-width: 600px;
